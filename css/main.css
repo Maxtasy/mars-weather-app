@@ -108,6 +108,10 @@ a:hover {
     padding: 0 2em;
 }
 
+.temp .section-title {
+    margin-bottom: .75rem;
+}
+
 .wind {
     grid-column: 3 / 4;
     display: grid;
@@ -148,6 +152,171 @@ a:hover {
     grid-column: 1 / 3;
 }
 
-.unit-toggle {
-    grid-column: 3 / 4;;
+.unit {
+    grid-column: 3 / 4;
+    place-self: end;
+    color: var(--clr-gray);
+    display: flex;
+    opacity: .7;
+    transition: opacity 257ms linear;
+}
+
+.unit:hover {
+    opacity: 1;
+}
+
+.unit__toggle {
+    cursor: pointer;
+    width: 4em;
+    border: 2px solid var(--clr-light);
+    background: transparent;
+    padding: 0;
+    border-radius: 100vmax;
+    margin: 0 1rem;
+}
+
+.unit__toggle::after {
+    content: "";
+    display: block;
+    background: var(--clr-light);
+    border-radius: 50%;
+    height: 1rem;
+    width: 1rem;
+    margin: 3px;
+    margin-left: auto;
+}
+
+.unit :checked ~ .unit__toggle::after {
+    margin: 3px;
+}
+
+.unit label {
+    cursor: pointer;
+}
+
+.unit input {
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+}
+
+.previous-weather {
+    background: var(--clr-light);
+    color: var(--clr-dark);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transform: translateY(60%);
+    transition: transform 500ms ease;
+    padding: 3em;
+}
+
+.show-previous-weather-button {
+    position: absolute;
+    width: 10rem;
+    background: var(--clr-light);
+    left: 50%;
+    transform: translate(-50%, calc(-100% - 3rem));
+    text-align: center;
+    font-size: var(--fs-h2);
+    line-height: 1;
+    clip-path: polygon(50% 0, 0% 100%, 100% 100%);
+    cursor: pointer;
+    color: var(--clr-gray);
+    border: none;
+    font-family: inherit;
+}
+
+.show-previous-weather-button:hover,
+.show-previous-weather-button:focus {
+    color: var(--clr-dark);
+}
+
+.show-previous-weather-button .show-previous-weather-arrow {
+    display: block;
+    transform: rotate(0);
+    transition: transform 500ms ease;
+}
+
+.previous-weather__title {
+    text-align: center;
+}
+
+.previous-days {
+    display: flex;
+    justify-content: space-between;
+}
+
+.previous-day {
+    opacity: 0;
+}
+
+.previous-day > *:not(button) { margin: 0; }
+
+.previous-day__date {
+    font-size: .9rem;
+    color: var(--clr-gray);
+}
+
+.previous-day__more-info {
+    border: 0;
+    border-radius: 100vmax;
+    background: var(--clr-dark);
+    color: var(--clr-light);
+    padding: .25rem 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 1em;
+}
+
+.previous-day__more-info:hover {
+    background: var(--clr-gray);
+}
+
+.show-weather.previous-weather {
+    transform: translateY(0);
+}
+
+.show-weather.previous-weather .show-previous-weather-arrow {
+    display: block;
+    transform: rotate(180deg) translateY(-6px);
+}
+
+.show-weather .previous-day {
+    animation: slideUpIn 750ms forwards;
+}
+
+.show-weather .previous-weather__title {
+    text-align: left;
+    animation: slideUpIn 750ms forwards;
+}
+
+.show-weather .previous-day:nth-child(1) { animation-delay: 100ms; }
+
+.show-weather .previous-day:nth-child(2) { animation-delay: 125ms; }
+
+.show-weather .previous-day:nth-child(3) { animation-delay: 150ms; }
+
+.show-weather .previous-day:nth-child(4) { animation-delay: 175ms; }
+
+.show-weather .previous-day:nth-child(5) { animation-delay: 200ms; }
+
+.show-weather .previous-day:nth-child(6) { animation-delay: 225ms; }
+
+.show-weather .previous-day:nth-child(7) { animation-delay: 250ms; }
+
+@keyframes slideUpIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
